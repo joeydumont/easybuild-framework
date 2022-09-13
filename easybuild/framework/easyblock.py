@@ -69,6 +69,7 @@ from easybuild.tools.build_log import EasyBuildError, dry_run_msg, dry_run_warni
 from easybuild.tools.build_log import print_error, print_msg, print_warning
 from easybuild.tools.config import DEFAULT_ENVVAR_USERS_MODULES
 from easybuild.tools.config import FORCE_DOWNLOAD_ALL, FORCE_DOWNLOAD_PATCHES, FORCE_DOWNLOAD_SOURCES
+from easybuild.tools.config import SOURCES_URL_PRIMARY
 from easybuild.tools.config import build_option, build_path, get_log_filename, get_repository, get_repositorypath
 from easybuild.tools.config import install_path, log_path, package_path, source_paths
 from easybuild.tools.environment import restore_env, sanitize_env
@@ -102,8 +103,6 @@ from easybuild.tools.utilities import INDENT_4SPACES, get_class_for, nub, quote_
 from easybuild.tools.utilities import remove_unwanted_chars, time2str, trace_msg
 from easybuild.tools.version import this_is_easybuild, VERBOSE_VERSION, VERSION
 
-
-EASYBUILD_SOURCES_URL = 'https://sources.easybuild.io'
 
 DEFAULT_BIN_LIB_SUBDIRS = ('bin', 'lib', 'lib64')
 
@@ -821,8 +820,10 @@ class EasyBlock(object):
                     source_urls = []
                 source_urls.extend(self.cfg['source_urls'])
 
-                # add https://sources.easybuild.io as fallback source URL
-                source_urls.append(EASYBUILD_SOURCES_URL + '/' + os.path.join(name_letter, location))
+                # add sources-url CLI as either a first check, or a fallback.
+                for url in build_option('sources_url'):
+                    index = 0 if build_option('sources_url_priority') == SOURCES_URL_PRIMARY else len(source_urls)
+                    source_urls.insert(index, url + '/' + os.path.join(name_letter, location))
 
                 mkdir(targetdir, parents=True)
 

@@ -113,8 +113,14 @@ DEFAULT_PNS = 'EasyBuildPNS'
 DEFAULT_PR_TARGET_ACCOUNT = 'easybuilders'
 DEFAULT_PREFIX = os.path.join(os.path.expanduser('~'), ".local", "easybuild")
 DEFAULT_REPOSITORY = 'FileRepository'
+DEFAULT_SOURCES_URL = 'https://sources.easybuild.io'
 DEFAULT_WAIT_ON_LOCK_INTERVAL = 60
 DEFAULT_WAIT_ON_LOCK_LIMIT = 0
+
+SOURCES_URL_PRIMARY = 'primary'
+SOURCES_URL_BACKUP = 'backup'
+SOURCES_URL_PRIORITY_CHOICES = [SOURCES_URL_PRIMARY, SOURCES_URL_BACKUP]
+DEFAULT_SOURCES_URL_PRIORITY = SOURCES_URL_BACKUP
 
 EBROOT_ENV_VAR_ACTIONS = [ERROR, IGNORE, UNSET, WARN]
 LOADED_MODULES_ACTIONS = [ERROR, IGNORE, PURGE, UNLOAD, WARN]
@@ -199,6 +205,7 @@ BUILD_OPTIONS_CMDLINE = {
         'hide_deps',
         'hide_toolchains',
         'http_header_fields_urlpat',
+        'sources_url_priority',
         'force_download',
         'insecure_download',
         'from_pr',
@@ -356,6 +363,9 @@ BUILD_OPTIONS_CMDLINE = {
     ],
     'defaultopt': [
         'default_opt_level',
+    ],
+    DEFAULT_SOURCES_URL: [
+        'sources_url',
     ],
     DEFAULT_ALLOW_LOADED_MODULES: [
         'allow_loaded_modules',

@@ -65,9 +65,11 @@ from easybuild.tools.config import DEFAULT_FORCE_DOWNLOAD, DEFAULT_INDEX_MAX_AGE
 from easybuild.tools.config import DEFAULT_JOB_EB_CMD, DEFAULT_LOGFILE_FORMAT, DEFAULT_MAX_FAIL_RATIO_PERMS
 from easybuild.tools.config import DEFAULT_MINIMAL_BUILD_ENV, DEFAULT_MNS, DEFAULT_MODULE_SYNTAX, DEFAULT_MODULES_TOOL
 from easybuild.tools.config import DEFAULT_MODULECLASSES, DEFAULT_PATH_SUBDIRS, DEFAULT_PKG_RELEASE, DEFAULT_PKG_TOOL
-from easybuild.tools.config import DEFAULT_PKG_TYPE, DEFAULT_PNS, DEFAULT_PREFIX, DEFAULT_PR_TARGET_ACCOUNT
+from easybuild.tools.config import DEFAULT_PKG_TYPE, DEFAULT_PNS, DEFAULT_PREFIX, DEFAULT_SOURCES_URL
+from easybuild.tools.config import DEFAULT_SOURCES_URL_PRIORITY, DEFAULT_PR_TARGET_ACCOUNT
 from easybuild.tools.config import DEFAULT_REPOSITORY, DEFAULT_WAIT_ON_LOCK_INTERVAL, DEFAULT_WAIT_ON_LOCK_LIMIT
-from easybuild.tools.config import EBROOT_ENV_VAR_ACTIONS, ERROR, FORCE_DOWNLOAD_CHOICES, GENERAL_CLASS, IGNORE
+from easybuild.tools.config import EBROOT_ENV_VAR_ACTIONS, ERROR, SOURCES_URL_PRIORITY_CHOICES, FORCE_DOWNLOAD_CHOICES
+from easybuild.tools.config import GENERAL_CLASS, IGNORE
 from easybuild.tools.config import JOB_DEPS_TYPE_ABORT_ON_ERROR, JOB_DEPS_TYPE_ALWAYS_RUN, LOADED_MODULES_ACTIONS
 from easybuild.tools.config import LOCAL_VAR_NAMING_CHECK_WARN, LOCAL_VAR_NAMING_CHECKS
 from easybuild.tools.config import OUTPUT_STYLE_AUTO, OUTPUT_STYLES, WARN
@@ -485,6 +487,11 @@ class EasyBuildOptions(GeneralOption):
             'skip-extensions': ("Skip installation of extensions", None, 'store_true', False),
             'skip-test-cases': ("Skip running test cases", None, 'store_true', False, 't'),
             'skip-test-step': ("Skip running the test step (e.g. unit tests)", None, 'store_true', False),
+            'sources-url': ("Specify different URLs to fetch sources from", 'strlist', 'store', [DEFAULT_SOURCES_URL]),
+            'sources-url-priority': ("Specify whether sources-url should be tried before or after the "
+                                     "ones defined in the easyconfigs",
+                                     'choice', 'store_or_None', DEFAULT_SOURCES_URL_PRIORITY,
+                                     SOURCES_URL_PRIORITY_CHOICES),
             'sticky-bit': ("Set sticky bit on newly created directories", None, 'store_true', False),
             'sysroot': ("Location root directory of system, prefix for standard paths like /usr/lib and /usr/include",
                         None, 'store', None),
