@@ -487,7 +487,7 @@ class EasyBuildOptions(GeneralOption):
             'skip-extensions': ("Skip installation of extensions", None, 'store_true', False),
             'skip-test-cases': ("Skip running test cases", None, 'store_true', False, 't'),
             'skip-test-step': ("Skip running the test step (e.g. unit tests)", None, 'store_true', False),
-            'sources-url': ("Specify different URLs to fetch sources from", 'strlist', 'store', [DEFAULT_SOURCES_URL]),
+            'sources-url': ("Specify different URLs to fetch sources from", 'strlist', 'store', DEFAULT_SOURCES_URL),
             'sources-url-priority': ("Specify whether sources-url should be tried before or after the "
                                      "ones defined in the easyconfigs",
                                      'choice', 'store_or_None', DEFAULT_SOURCES_URL_PRIORITY,

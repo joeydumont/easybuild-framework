@@ -113,7 +113,7 @@ DEFAULT_PNS = 'EasyBuildPNS'
 DEFAULT_PR_TARGET_ACCOUNT = 'easybuilders'
 DEFAULT_PREFIX = os.path.join(os.path.expanduser('~'), ".local", "easybuild")
 DEFAULT_REPOSITORY = 'FileRepository'
-DEFAULT_SOURCES_URL = 'https://sources.easybuild.io'
+DEFAULT_SOURCES_URL = ('https://sources.easybuild.io',)
 DEFAULT_WAIT_ON_LOCK_INTERVAL = 60
 DEFAULT_WAIT_ON_LOCK_LIMIT = 0
 
